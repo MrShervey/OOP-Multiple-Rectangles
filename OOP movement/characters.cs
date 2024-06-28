@@ -8,12 +8,14 @@ using System.Windows.Forms;
 
 namespace OOP_movement
 {
-    internal class characters
+    //Base class
+    internal class character
     {
+        //seting attributes
         private int startposX, startposy;
         public PictureBox sprite = new PictureBox();
-        private Random random = new Random();
-        public characters(int x, int y, int red, int green, int blue) 
+        //constructor
+        public character(int x, int y, int red, int green, int blue) 
         { 
             this.startposX = x;
             this.startposy = y;
@@ -22,42 +24,72 @@ namespace OOP_movement
             sprite.BackColor = Color.FromArgb(red, green, blue);
         }
     }
-    internal class movingCharacter : characters
+
+    //Derived class
+    internal class movingCharacter : character
     {
+        //extra attributes for derived class
         private int speed;
         private int count = 50;
         private bool left = true;
-        public movingCharacter(int x, int y, int s, int red, int green, int blue)
-            :base(x,y,red,green,blue)
+        private bool up = true;
+        private string direction;
+        //constructor
+        public movingCharacter(int x, int y, int s, int red, int green, int blue, string dir)
+            :base(x,y,red,green,blue) //constructing the base class
         {
             speed = s;
+            direction = dir;
             Timer myTimer = new Timer();
             myTimer.Tick += new EventHandler(movement);
             myTimer.Interval = 25;
             myTimer.Start();
-
         }
+        //Moving the picture box sprite
         public void movement(object sender, EventArgs e)
         {
-            if(left)
+            if(direction == "h")
             {
-                base.sprite.Left -= speed;
-                count--;
-                if (count <= 0)
+                if (left)
                 {
-                    left = false;
+                    base.sprite.Left -= speed;
+                    count--;
+                    if (count <= 0)
+                    {
+                        left = false;
+                    }
+                }
+                else
+                {
+                    base.sprite.Left += speed;
+                    count++;
+                    if (count >= 100)
+                    {
+                        left = true;
+                    }
                 }
             }
-            else
+            else if (direction == "v")
             {
-                base.sprite.Left += speed;
-                count++;
-                if(count >= 100)
+                if (up)
                 {
-                    left = true;
+                    base.sprite.Top -= speed;
+                    count--;
+                    if (count <= 0)
+                    {
+                        up = false;
+                    }
+                }
+                else
+                {
+                    base.sprite.Top += speed;
+                    count++;
+                    if (count >= 100)
+                    {
+                        up = true;
+                    }
                 }
             }
         }
     }
-
 }
