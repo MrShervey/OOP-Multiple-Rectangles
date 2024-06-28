@@ -16,7 +16,7 @@ namespace OOP_movement
         public Form1()
         {
             InitializeComponent();
-            panel1.Size = new Size(400, 400);
+            panel1.Size = new Size(1000, 600);
             this.Controls.Add(panel1);
             populateForm();
         }
@@ -41,9 +41,11 @@ namespace OOP_movement
                 int r = random.Next(256);
                 int g = random.Next(256);
                 int b = random.Next(256);
-                characters newCharacter = new characters(posx, posy, 3, r, g, b);
+                characters newCharacter = new characters(posx, posy, r, g, b);
                 panel1.Controls.Add(newCharacter.sprite);
             }
+            movingCharacter moving = new movingCharacter(200, 200,5,0,0,0);
+            panel1.Controls.Add(moving.sprite);
         }
     }
 }
