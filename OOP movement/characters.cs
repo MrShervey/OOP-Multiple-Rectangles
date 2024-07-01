@@ -16,13 +16,13 @@ namespace OOP_movement
         private int startposX, startposy;
         public PictureBox sprite = new PictureBox();
         //constructor
-        public Character(int x, int y, int red, int green, int blue) 
-        { 
+        public Character(int x, int y, int red, int green, int blue)
+        {
             this.startposX = x;
             this.startposy = y;
             sprite.Left = startposX;
             sprite.Top = startposy;
-            sprite.BackColor = Color.FromArgb(red, green, blue);                  
+            sprite.BackColor = Color.FromArgb(red, green, blue);
         }
     }
 
@@ -40,6 +40,7 @@ namespace OOP_movement
         public MovingCharacter(int x, int y, int s, int red, int green, int blue, string dir)
             :base(x,y,red,green,blue) //constructing the base class
         {
+            base.sprite.Size = new Size(150, 50);
             speed = s;
             direction = dir;
             myTimer.Interval = 25;
@@ -100,14 +101,15 @@ namespace OOP_movement
             :base(x,y,red,green,blue)
         {
             speed = s;
+            base.sprite.Size = new Size(50, 50);
         }
-        public void playerMovement(Keys key)
+        public void movement(Keys key)
         {
             if (key == Keys.Left && base.sprite.Left > 5)
             {
                 base.sprite.Left -= speed;
             }
-            else if (key == Keys.Right && base.sprite.Left < 730)
+            else if (key == Keys.Right && base.sprite.Left < 680)
             {
                 base.sprite.Left += speed;
             }

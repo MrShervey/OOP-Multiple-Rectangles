@@ -12,7 +12,7 @@ namespace OOP_movement
 {
     public partial class Form1 : Form
     {
-        Player newPlayer = new Player(100, 100, 5, 150, 150, 100);
+        Player newPlayer = new Player(100, 100, 10, 150, 150, 100);
         //Constructor for the form
         public Form1()
         {
@@ -52,7 +52,7 @@ namespace OOP_movement
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            newPlayer.playerMovement(e.KeyCode);
+            newPlayer.movement(e.KeyCode);
         }
 
         private void Form1_Load(object sender, EventArgs e){}
